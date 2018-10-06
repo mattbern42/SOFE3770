@@ -27,15 +27,23 @@ class cityGrid:
             city.append(temp)
         return city
         
-    def solution(self):
+    def hideoutLocHeight(self,citymap,lx,ly):
+        return citymap[lx-1][ly-1]
+        
+    def a_jump(self,result,dx,dy,v,lx,ly):
         pass
 
+    def empty_s(self,dx,dy):
+        return np.zeros((dy,dx))
+    
     def run(self):
         dx,dy,w,v,lx,ly = self.citySpecificaiton()
-        a = self.cityMap(dy)
-        print (a)
+        result = self.empty_s(dx,dy)
+        cityMap = self.cityMap(dy)
+        h_loc = self.hideoutLocHeight(cityMap,lx,ly)
+        result[lx][ly] = 0
+                 
         
-        
-        
+    
 test = cityGrid("Input1.txt")
 test.run()
