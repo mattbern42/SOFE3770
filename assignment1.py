@@ -30,18 +30,31 @@ class cityGrid:
     def hideoutLocHeight(self,citymap,lx,ly):
         return citymap[lx-1][ly-1]
         
-    def a_jump(self,result,dx,dy,v,lx,ly):
+    def jumpList(self,dx,dy):
+        jump_List = [[0 for i in range (dx)] for j in range (dy)]
+        for i in range (dy):
+            for j in range (dx):
+                jump_List[i][j] = str(i)+str(j)
+        return jump_List
+
+    def isPossibleToJump(self,velocity,w,jumpFrom,jumpTo):
         pass
+        #jumpFrom is (xi,yi)
+        #jumpTo is (xf,yf)
+        # i = intial, f = final
 
     def empty_s(self,dx,dy):
-        return np.zeros((dy,dx))
+        return np.full((dy,dx),1)
     
     def run(self):
         dx,dy,w,v,lx,ly = self.citySpecificaiton()
         result = self.empty_s(dx,dy)
+        j_List = self.jumpList(dx,dy)
         cityMap = self.cityMap(dy)
         h_loc = self.hideoutLocHeight(cityMap,lx,ly)
-        result[lx][ly] = 0
+        result[lx-1][ly-1] = 0
+        print (j_List)
+        print (result)
                  
         
     
