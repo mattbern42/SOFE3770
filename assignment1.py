@@ -5,34 +5,37 @@ Created on Fri Oct  5 12:42:20 2018
 
 @author: yin
 """
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D as plt3d
+
 class cityGrid:
     def __init__(self,inputfile):
         self.inputfile = inputfile
     
     def citySpecificaiton(self):
         self.InputFile = open(self.inputfile,"r")
-        specification = (self.InputFile.readline())
-        self.cityLength = int(specification.split()[0])
-        self.cityWidth = int(specification.split()[1])
-        self.buildWidth = int(specification.split()[2])
-        self.velocity = int(specification.split()[3])
-        self.hideout = (int(specification.split()[4]),int(specification.split()[5]))
-        if self.cityLength < 1 or self.cityLength >= 20:
-            raise Exception("cityLength, dx, is out of range")
-        if self.cityWidth < 1 or self.cityWidth >= 20:
-            raise Exception("cityWidth, dy, is out of range")
+        specification = (self.InputFile.readline()).split()
+        specification = [int(i) for i in specification]
+        return specification
         
-        
-    def cityMap(self):
-        spec = self.citySpecificaiton()
+    def cityMap(self,cityWidth):
         city = []
-        for i in range(self.cityWidth):
+        for i in range(cityWidth):
             temp = self.InputFile.readline().split()
             temp = [int(i) for i in temp]
-            #temp = map(int,temp) 
             city.append(temp)
-            #city.append(list(temp)) 
-        print (city)
+        return city
+        
+    def solution(self):
+        pass
+
+    def run(self):
+        dx,dy,w,v,lx,ly = self.citySpecificaiton()
+        a = self.cityMap(dy)
+        print (a)
+        
+        
         
 test = cityGrid("Input1.txt")
-test.cityMap()
+test.run()
